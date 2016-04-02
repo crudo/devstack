@@ -57,6 +57,10 @@
     "url-loader": "0.5.7"
   },
   "dependencies": {
+    "classnames": "2.2.3",
+    "immutable": "3.7.6",
+    "jquery": "2.1.4",
+    "mousetrap": "1.5.3",
     "node-libs-browser": "1.0.0",
     "react": "0.14.8",
     "webpack": "1.12.14",
