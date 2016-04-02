@@ -2,6 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = function getWebpackConfig() {
+    var babelOptions = JSON.stringify({
+        presets: ['es2015', 'stage-0', 'react'],
+        plugins: ['transform-runtime']
+    });
+
     return {
         entry: {
             app: ['./app/app']
@@ -12,20 +17,9 @@ module.exports = function getWebpackConfig() {
         module: {
             loaders: [
                 {
-                    test: /\.js$/,
-                    loader: 'babel-loader?stage=0',
+                    test: /\.jsx?$/,
+                    loader: 'babel?' + babelOptions,
                     exclude: /node_modules/
-                },
-
-                {
-                    test: /\.jsx$/,
-                    loader: 'babel-loader?stage=0',
-                    exclude: /node_modules/
-                },
-
-                {
-                    test: /\.styl$/,
-                    loader: 'style!css?sourceMap!autoprefixer!stylus'
                 },
 
                 {
@@ -45,11 +39,6 @@ module.exports = function getWebpackConfig() {
                 },
 
                 {
-                    test: /\.jpg$/,
-                    loader: 'file-loader'
-                },
-
-                {
                     test: /\.(eot|woff|ttf|svg)/,
                     loader: 'file-loader'
                 }
@@ -58,7 +47,7 @@ module.exports = function getWebpackConfig() {
 
         resolve: {
             // Allow to omit extensions when requiring these files
-            extensions: ['', '.js', '.jsx', '.styl', '.scss'],
+            extensions: ['', '.js', '.jsx', '.scss'],
             modulesDirectories: ['node_modules', 'bower_components'],
 
             alias: {

@@ -24,7 +24,7 @@ var buildConfig = _.assign(getWebpackConfig(), {
     output: {
         path: path.join(__dirname, '/build/'),
         publicPath: '/',
-        filename: '[name].[hash].js'
+        filename: '[name].js'
     }
 });
 
@@ -37,7 +37,7 @@ buildConfig.module.loaders.filter(function(definition) {
 });
 
 buildConfig.plugins = buildConfig.plugins.concat(
-    new ExtractTextPlugin('[name].[hash].css'),
+    new ExtractTextPlugin('[name].css'),
 
     new webpack.DefinePlugin({
         'process.env': {
